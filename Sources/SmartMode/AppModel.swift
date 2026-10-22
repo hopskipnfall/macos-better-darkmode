@@ -6,6 +6,8 @@ import SmartModeCore
 final class AppModel: ObservableObject {
     @Published var lines: [String] = ["starting…"]
     @Published var configError: String?
+    @Published var launchAtLogin = LoginItem.isEnabled
+    @Published var loginItemError: String?
     @Published var paused = false {
         didSet { controller.paused = paused }
     }
@@ -26,6 +28,16 @@ final class AppModel: ObservableObject {
         timer = Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { [weak self] _ in
             Task { @MainActor in self?.tick() }
         }
+    }
+
+    func setLaunchAtLogin(_ enabled: Bool) {
+        do {
+            try LoginItem.set(enabled)
+            loginItemError = nil
+        } catch {
+            loginItemError = "Launch at login failed: \(error.localizedDescription)"
+        }
+        launchAtLogin = LoginItem.isEnabled
     }
 
     func openConfig() {

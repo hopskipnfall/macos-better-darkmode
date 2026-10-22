@@ -16,6 +16,8 @@ If the sun is well below the horizon it's always dark. Otherwise the weighted sc
 open SmartMode.app
 ```
 
+Use the menu's **Launch at login** toggle to start it automatically. macOS ties this to the app's location, so move `SmartMode.app` to `/Applications` first.
+
 The first switch asks for permission to control System Events. Config lives at `~/.config/smart-mode/config.json` (created on first launch, hot-reloaded). Set your `latitude` and `longitude`; see `config.example.json` for every tunable.
 
 ## Tests
