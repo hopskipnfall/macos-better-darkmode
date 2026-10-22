@@ -15,6 +15,13 @@ struct MenuView: View {
         Button(model.paused ? "Resume auto switching" : "Pause auto switching") {
             model.paused.toggle()
         }
+        Toggle("Launch at login", isOn: Binding(
+            get: { model.launchAtLogin },
+            set: { model.setLaunchAtLogin($0) }
+        ))
+        if let error = model.loginItemError {
+            Text(error)
+        }
         Button("Open config…") { model.openConfig() }
         Button("Quit") { NSApplication.shared.terminate(nil) }
     }
