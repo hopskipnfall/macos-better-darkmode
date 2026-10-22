@@ -1,4 +1,4 @@
-# macos-ambient-appearance
+# macos-better-darkmode
 
 A macOS menu-bar app that switches between light and dark mode from ambient signals instead of a schedule.
 
